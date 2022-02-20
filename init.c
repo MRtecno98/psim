@@ -4,6 +4,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+const static struct vector vc_zero = {0.0, 0.0};
+const static struct state st_zero = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
+
 int init_uverse(struct universe* uverse, int mpcount) {
 	int bytes = sizeof(struct particle) * mpcount;
 	
@@ -18,6 +21,15 @@ void destroy_uverse(struct universe* uverse) {
 	init_uverse(uverse, 0);
 }
 
+void init_particle(struct particle* p) {
+	p->mass = 0.0;
+	
+	for(int i = 0; i < MAX_FORCES; i++)
+		p->forces[i] = vc_zero;
+	
+	p->cstate = st_zero;
+}
+
 void add_particle(struct universe* uverse, struct particle* p) {
 	if(uverse->pcount == uverse->mpcount) {
 		fprintf(stderr, "\nERROR: Max particle count reached\n");
@@ -26,4 +38,8 @@ void add_particle(struct universe* uverse, struct particle* p) {
 	
 	uverse->pcount++;
 	uverse->particles[uverse->pcount - 1] = *p;
+}
+
+void add_const_force(int slot, struct particle* p, struct vector force) {
+	p->forces[slot] = force;
 }

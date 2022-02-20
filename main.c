@@ -4,6 +4,7 @@
 #include "psim.h"
 #include "init.h"
 #include "display.h"
+#include "proc.h"
 
 struct universe uverse;
 
@@ -12,14 +13,21 @@ int main() {
 	printf("Allocated %d bytes\n\n", bytes);
 	
 	struct particle p;
+	init_particle(&p);
+	
 	p.mass = 2.0;
-	p.fcount = 0;
-	p.cstate.pos.x = 5.0;
-	p.cstate.pos.y = 10.0;
+	
+	struct vector force = {1, 0.5};
+	add_const_force(0, &p, force);
 	
 	add_particle(&uverse, &p);
 	
-	display_uverse(uverse, 0);
+	while(true) {
+		display_uverse(uverse, 0);
+		
+		getchar();
+		advance_state(&uverse);
+	}
 	
 	destroy_uverse(&uverse);
 	return 0;

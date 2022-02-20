@@ -52,6 +52,8 @@ void display_uverse(struct universe uverse, int indent) {
 		display_particle(&uverse.particles[i], indent + 1);
 		printf("\n");
 	}
+	
+	printdln("", indent, true);
 }
 
 void display_particle(struct particle* p, int indent) {
@@ -60,9 +62,9 @@ void display_particle(struct particle* p, int indent) {
 	printdln("Mass: %.2f", indent + 1, false, p->mass);
 	printf("\n");
 	
-	printdln("Forces: %d", indent + 1, false, p->fcount);
+	printdln("Forces: %d", indent + 1, false, MAX_FORCES);
 	
-	for(int i = 0; i < p->fcount; i++)
+	for(int i = 0; i < MAX_FORCES; i++)
 		display_vector(p->forces[i], indent + 2);
 	
 	printf("\n");

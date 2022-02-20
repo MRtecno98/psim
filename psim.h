@@ -4,6 +4,8 @@
 #define TIME_DELTA 1
 #define REAL_DELTA 1
 
+#define MAX_FORCES 10
+
 struct vector {
 	double x, y;
 };
@@ -13,8 +15,7 @@ struct state {
 };
 
 struct particle {
-	int fcount;
-	struct vector forces[10];
+	struct vector forces[MAX_FORCES];
 	
 	double mass;
 	

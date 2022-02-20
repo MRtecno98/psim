@@ -35,3 +35,34 @@ void printrs(char* s, int times) {
 	free(r);
 }
 
+struct vector vsum3(struct vector a, struct vector b, struct vector c) {
+	struct vector res;
+	res.x = a.x + b.x + c.x;
+	res.y = a.y + b.y + c.y;
+	
+	return res;
+}
+
+struct vector vsum(struct vector a, struct vector b) {
+	struct vector res;
+	res.x = a.x + b.x;
+	res.y = a.y + b.y;
+	
+	return res;
+}
+
+struct vector vdiv(struct vector v, double q) {
+	struct vector res;
+	res.x = v.x / q;
+	res.y = v.y / q;
+	
+	return res;
+}
+
+struct vector vmul(struct vector v, double f) {
+	struct vector res;
+	res.x = v.x * f;
+	res.y = v.y * f;
+	
+	return res;
+}
