@@ -1,10 +1,13 @@
 #include "psim.h"
 #include "init.h"
+#include "util.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 const struct vector vc_zero = {0.0, 0.0};
+const struct vector vc_one = {1.0, 1.0};
+
 const struct state st_zero = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
 
 int init_uverse(struct universe* uverse, int mpcount) {
@@ -41,6 +44,10 @@ void add_particle(struct universe* uverse, struct particle* p) {
 	uverse->particles[uverse->pcount - 1] = *p;
 }
 
-void add_const_force(int slot, struct particle* p, struct vector force) {
+void random_pos(struct state* s, int varia) {
+	s->pos = randvec(varia);
+}
+
+void set_force(int slot, struct particle* p, struct vector force) {
 	p->forces[slot] = force;
 }

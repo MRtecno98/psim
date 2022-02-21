@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 #include "psim.h"
 #include "init.h"
@@ -10,6 +11,8 @@
 struct universe uverse;
 
 int main() {
+	srand(time(NULL));
+	
 	int bytes = init_uverse(&uverse, 10);
 	printf("Allocated %d bytes\n\n", bytes);
 	
@@ -18,14 +21,12 @@ int main() {
 	
 	p.mass = 2.0;
 	
-	struct vector force = {1, 0.5};
-	add_const_force(0, &p, force);
-	
+	p.charge = 5.0;
+	random_pos(&p.cstate, 20);
 	add_particle(&uverse, &p);
 	
-	force = vmul(force, -1.0);
-	add_const_force(0, &p, force);
-	
+	p.charge = -5.0;
+	random_pos(&p.cstate, 20);
 	add_particle(&uverse, &p);
 	
 	char c;
@@ -43,7 +44,11 @@ int main() {
 				
 			case 'i':
 				force = vmul(force, -1.0);
-				add_const_force(0, &p, force);
+				set_force(0, &p, force);
+				break;
+				
+			case 'r':
+				random_pos(&p.cstate, 10);
 				break;
 		}		
 		
