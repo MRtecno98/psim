@@ -9,17 +9,12 @@
 void vprintd(char* format, int indent, bool pad, va_list args) {
 	const int space = indent * INDENT_SIZE;
 	
-	char* s;
-	int size = vsnprintf(s, 0, format, args) + 1;
-	
-	s = malloc(size);
-	vsnprintf(s, size, format, args);
+	char s[MAX_LINE * 2];
+	vsnprintf(s, MAX_LINE * 2, format, args);
 	
 	printr(' ', space);
 	printf("%s", s);
 	if(pad) printr('-', MAX_LINE - (strlen(s) + space));
-	
-	free(s);
 }
 
 void vprintdln(char* format, int indent, bool pad, va_list args) {
