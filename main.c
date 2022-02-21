@@ -5,6 +5,7 @@
 #include "init.h"
 #include "display.h"
 #include "proc.h"
+#include "util.h"
 
 struct universe uverse;
 
@@ -22,10 +23,30 @@ int main() {
 	
 	add_particle(&uverse, &p);
 	
-	while(true) {
+	force = vmul(force, -1.0);
+	add_const_force(0, &p, force);
+	
+	add_particle(&uverse, &p);
+	
+	char c;
+	while(c != 'q') {
+		system("clear");
 		display_uverse(uverse, 0);
 		
-		getchar();
+		printf("\n# ");
+		c = getchar();
+		
+		switch(c) {
+			case 'a':
+				add_particle(&uverse, &p);
+				break;
+				
+			case 'i':
+				force = vmul(force, -1.0);
+				add_const_force(0, &p, force);
+				break;
+		}		
+		
 		advance_state(&uverse);
 	}
 	
