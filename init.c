@@ -4,8 +4,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-const static struct vector vc_zero = {0.0, 0.0};
-const static struct state st_zero = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
+const struct vector vc_zero = {0.0, 0.0};
+const struct state st_zero = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
 
 int init_uverse(struct universe* uverse, int mpcount) {
 	int bytes = sizeof(struct particle) * mpcount;

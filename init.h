@@ -3,6 +3,9 @@
 
 #include "psim.h"
 
+const struct vector vc_zero;
+const struct state st_zero;
+
 int init_uverse(struct universe*, int pcount);
 void destroy_uverse(struct universe*);
 
