@@ -23,6 +23,7 @@ void destroy_uverse(struct universe* uverse) {
 
 void init_particle(struct particle* p) {
 	p->mass = 0.0;
+	p->charge = 0.0;
 	
 	for(int i = 0; i < MAX_FORCES; i++)
 		p->forces[i] = vc_zero;

@@ -18,6 +18,7 @@ struct particle {
 	struct vector forces[MAX_FORCES];
 	
 	double mass;
+	double charge;
 	
 	struct state cstate;
 };
