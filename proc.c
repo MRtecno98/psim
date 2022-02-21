@@ -49,11 +49,11 @@ struct vector calc_func_force(struct particle p, struct universe* uverse, force_
 }
 
 double c_gravity(struct particle p, struct particle t) {
-	return GRAV_CONST * p.mass * p.mass;
+	return GRAV_CONST * p.mass * t.mass;
 }
 
 double c_electr(struct particle p, struct particle t) {
-	return CHRG_CONST * p.charge * p.charge;
+	return CHRG_CONST * p.charge * t.charge;
 }
 
 void advance_state(struct universe* uverse) {

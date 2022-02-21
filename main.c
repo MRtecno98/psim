@@ -22,14 +22,14 @@ int main() {
 	p.mass = 2.0;
 	
 	p.charge = 5.0;
-	random_pos(&p.cstate, 20);
+	random_pos(&p.cstate, 50);
 	add_particle(&uverse, &p);
 	
 	p.charge = -5.0;
-	random_pos(&p.cstate, 20);
+	random_pos(&p.cstate, 50);
 	add_particle(&uverse, &p);
 	
-	int steps;
+	long steps;
 	char c = '\n', lc;
 	while(c != 'q') {
 		system("clear");
