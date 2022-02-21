@@ -80,4 +80,6 @@ void advance_state(struct universe* uverse) {
 						  
 		p->cstate = nstate;
 	}
+	
+	uverse->instant++;
 }

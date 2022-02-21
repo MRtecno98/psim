@@ -26,6 +26,7 @@ struct particle {
 struct universe {
 	int pcount;
 	int mpcount;
+	long instant;
 	struct particle* particles;
 };
 

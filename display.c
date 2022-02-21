@@ -42,7 +42,7 @@ void printdln(char* format, int indent, bool pad, ...) {
 }
 
 void display_uverse(struct universe uverse, int indent) {
-	printdln("Universe ", indent, true);
+	printdln("Universe - Instant: %d ", indent, true, uverse.instant);
 	
 	for(int i = 0; i < uverse.pcount; i++) {
 		display_particle(&uverse.particles[i], indent + 1);

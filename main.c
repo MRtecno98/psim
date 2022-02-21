@@ -29,13 +29,17 @@ int main() {
 	random_pos(&p.cstate, 20);
 	add_particle(&uverse, &p);
 	
-	char c;
+	int steps;
+	char c = '\n', lc;
 	while(c != 'q') {
 		system("clear");
 		display_uverse(uverse, 0);
 		
 		printf("\n# ");
-		c = getchar();
+		do {
+			lc = c;
+			c = getchar();
+		} while(c == '\n' && lc != '\n');
 		
 		switch(c) {
 			case 'a':
@@ -43,11 +47,20 @@ int main() {
 				break;
 				
 			case 'r':
-				random_pos(&p.cstate, 10);
+				random_pos(&p.cstate, 50);
 				break;
-		}		
-		
-		advance_state(&uverse);
+				
+			case 's':
+				scanf("%d", &steps);
+				printf("Processing fast-forward...\n");
+				for(int i = 0; i < steps; i++)
+					advance_state(&uverse);
+				break;
+				
+			case '\n':
+				advance_state(&uverse);
+				break;
+		}
 	}
 	
 	destroy_uverse(&uverse);

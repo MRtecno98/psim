@@ -13,6 +13,7 @@ const struct state st_zero = {{0.0, 0.0}, {0.0, 0.0}, {0.0, 0.0}};
 int init_uverse(struct universe* uverse, int mpcount) {
 	int bytes = sizeof(struct particle) * mpcount;
 	
+	uverse->instant = 0;
 	uverse->pcount = 0;
 	uverse->mpcount = mpcount;
 	uverse->particles = realloc(uverse->particles, bytes);
