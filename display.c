@@ -56,13 +56,23 @@ void display_particle(struct particle* p, int indent) {
 	printdln("Particle ", indent, true);
 	
 	printdln("Mass: %.2f", indent + 1, false, p->mass);
+	printdln("Charge: %.2f", indent + 1, false, p->charge);
 	printf("\n");
 	
-	printdln("Forces: %d", indent + 1, false, MAX_FORCES);
+	int c = 0;
+	struct vector* forces[10];
+	for(int i = 0; i < MAX_FORCES; i++) {
+		if(!veq(p->forces[i], vc_zero)) {
+			c++;
+			forces[i] = &p->forces[i];
+		} else forces[i] = NULL;
+	}
+		
+	printdln("Forces: %d/%d", indent + 1, false, c, MAX_FORCES);
 	
 	for(int i = 0; i < MAX_FORCES; i++)
-		if(!veq(p->forces[i], vc_zero))
-			display_vector(p->forces[i], indent + 2);
+		if(forces[i] != NULL)
+			display_vector(*forces[i], indent + 2);
 	
 	printf("\n");
 	
