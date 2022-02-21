@@ -1,5 +1,6 @@
 #include "psim.h"
 #include "util.h"
+#include "init.h"
 #include "display.h"
 
 #include <stdio.h>
@@ -60,7 +61,8 @@ void display_particle(struct particle* p, int indent) {
 	printdln("Forces: %d", indent + 1, false, MAX_FORCES);
 	
 	for(int i = 0; i < MAX_FORCES; i++)
-		display_vector(p->forces[i], indent + 2);
+		if(!veq(p->forces[i], vc_zero))
+			display_vector(p->forces[i], indent + 2);
 	
 	printf("\n");
 	

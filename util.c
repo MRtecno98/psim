@@ -66,3 +66,7 @@ struct vector vmul(struct vector v, double f) {
 	
 	return res;
 }
+
+bool veq(struct vector a, struct vector b) {
+	return a.x == b.x && a.y == b.y;
+}
