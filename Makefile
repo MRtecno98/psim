@@ -7,4 +7,4 @@ clean:
 	rm -f *.o *.gch *.out
 
 compile:
-	gcc *.c *.h
+	gcc -lm *.c *.h

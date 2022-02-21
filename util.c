@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <math.h>
 
 char* repeat(char c, int times) {
 	char* s = calloc(times, sizeof(c));
@@ -69,4 +70,37 @@ struct vector vmul(struct vector v, double f) {
 
 bool veq(struct vector a, struct vector b) {
 	return a.x == b.x && a.y == b.y;
+}
+
+struct vector vdiff(struct vector a, struct vector b) {
+	struct vector res;
+	res.x = b.x - a.x;
+	res.y = b.y - a.y;
+	
+	return res;
+}
+
+double dist(struct vector a, struct vector b) {
+	return sqrt(pow(dist_x(a, b), 2) + pow(dist_x(a, b), 2));
+}
+
+double dist_x(struct vector a, struct vector b) {
+	return b.x - a.x;
+}
+
+double dist_y(struct vector a, struct vector b) {
+	return b.y - a.y;
+}
+
+double angcoeff(struct vector a, struct vector b) {
+	struct vector diff = vdiff(a, b);
+	return diff.y / diff.x;
+}
+
+struct vector randvec(int varia) {
+	struct vector v;
+	v.x = rand() % varia;
+	v.y = rand() % varia;
+	
+	return v;
 }
