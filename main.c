@@ -42,11 +42,6 @@ int main() {
 				add_particle(&uverse, &p);
 				break;
 				
-			case 'i':
-				force = vmul(force, -1.0);
-				set_force(0, &p, force);
-				break;
-				
 			case 'r':
 				random_pos(&p.cstate, 10);
 				break;
