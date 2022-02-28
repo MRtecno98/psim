@@ -18,4 +18,6 @@ void display_uverse(struct universe, int indent);
 void display_particle(struct particle*, int indent);
 void display_vector(struct vector, int indent);
 
+void print_progress(long val, long max, int size);
+
 #endif

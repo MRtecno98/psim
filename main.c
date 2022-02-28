@@ -29,7 +29,6 @@ int main() {
 	random_pos(&p.cstate, 50);
 	add_particle(&uverse, &p);
 	
-	long steps;
 	char c = '\n', lc;
 	while(c != 'q') {
 		system("clear");
@@ -50,12 +49,22 @@ int main() {
 				random_pos(&p.cstate, 50);
 				break;
 				
-			case 's':
-				scanf("%d", &steps);
-				printf("Processing fast-forward...\n");
-				for(int i = 0; i < steps; i++)
-					advance_state(&uverse);
+			case 'm':
+				scanf("%lf", &p.mass);
 				break;
+				
+			case 's': {
+				long steps;
+				scanf("%ld", &steps);
+				printf("Processing fast-forward...\n");
+				
+				for(int i = 0; i < steps; i++) {
+					print_progress(i, steps, 20);
+					advance_state(&uverse);
+				}
+				
+				break;
+			}
 				
 			case '\n':
 				advance_state(&uverse);

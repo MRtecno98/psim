@@ -89,3 +89,15 @@ void display_particle(struct particle* p, int indent) {
 void display_vector(struct vector v, int indent) {
 	printdln("X: %.2f Y: %.2f", indent, false, v.x, v.y);
 }
+
+void print_progress(long val, long max, int size) {
+	int full = ((float) (val * size)) / max;
+	
+	printf("\r[ %ld / %ld ", val, max);
+	for(int i = 0; i < size; i++) {
+		printf(i <= full ? "#" : "-");
+	}
+	printf(" ]");
+	
+	fflush(stdout);
+}
